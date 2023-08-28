@@ -1,0 +1,86 @@
+User
+In c# .net 6, for a given models:
+  public class Country {
+    public NameInfo Name { get; set; }
+    public List<string> Tld { get; set; }
+    public string Cca2 { get; set; }
+    public string Ccn3 { get; set; }
+    public string Cca3 { get; set; }
+    public string Cioc { get; set; }
+    public bool Independent { get; set; }
+    public string Status { get; set; }
+    public bool UnMember { get; set; }
+    public Dictionary<string, CurrencyInfo> Currencies { get; set; }
+    public IddInfo Idd { get; set; }
+    public List<string> Capital { get; set; }
+    public List<string> AltSpellings { get; set; }
+    public string Region { get; set; }
+    public string Subregion { get; set; }
+    public Dictionary<string, string> Languages { get; set; }
+    public Dictionary<string, TranslationInfo> Translations { get; set; }
+    public List<double> Latlng { get; set; }
+    public bool Landlocked { get; set; }
+    public List<string> Borders { get; set; }
+    public double Area { get; set; }
+    public Dictionary<string, DemonymInfo> Demonyms { get; set; }
+    public string Flag { get; set; }
+    public MapInfo Maps { get; set; }
+    public int Population { get; set; }
+    public Dictionary<string, double> Gini { get; set; }
+    public string Fifa { get; set; }
+    public CarInfo Car { get; set; }
+    public List<string> Timezones { get; set; }
+    public List<string> Continents { get; set; }
+    public FlagInfo Flags { get; set; }
+    public CoatOfArmsInfo CoatOfArms { get; set; }
+    public string StartOfWeek { get; set; }
+    public CapitalInfo CapitalInfo { get; set; }
+    public PostalCodeInfo PostalCode { get; set; }
+  }
+
+create a function that accepts a string as an attribute and can sort data by ` Name.Common `.  
+
+The sort should accept string ` ascend or descend ` and sort countries name by provided attribute (e.g. providing attribute ascend all countries should be sorted from A to Z) 
+
+ChatGTP:
+Certainly! You'll need to create a function that accepts a list of countries, a sorting attribute, and a sort order (either "ascend" or "descend"). Here's how you can create that function:
+
+First, I assume that the `NameInfo` model has a `Common` property. If not, please modify the code accordingly.
+
+```csharp
+public class NameInfo
+{
+    public string Common { get; set; }
+    // ... other properties if any
+}
+
+// ... other models ...
+
+public static List<Country> SortCountries(List<Country> countries, string sortOrder)
+{
+    if (sortOrder == "ascend")
+    {
+        return countries.OrderBy(c => c.Name.Common).ToList();
+    }
+    else if (sortOrder == "descend")
+    {
+        return countries.OrderByDescending(c => c.Name.Common).ToList();
+    }
+    else
+    {
+        throw new ArgumentException("Invalid sortOrder provided");
+    }
+}
+```
+
+Usage:
+
+```csharp
+List<Country> countries = new List<Country>();
+// ... populate countries ...
+
+var sortedCountriesAscend = SortCountries(countries, "ascend");
+var sortedCountriesDescend = SortCountries(countries, "descend");
+```
+
+This function uses LINQ to order the list of countries either in ascending or descending order based on the `Name.Common` attribute. If neither "ascend" nor "descend" is provided, an ArgumentException is thrown.

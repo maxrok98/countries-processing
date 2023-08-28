@@ -6,12 +6,24 @@ namespace CountriesProcessing.Helpers {
       return countries.Where(country =>
           country.Name != null &&
           country.Name.Common != null &&
-          country.Name.Common.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0)
+          country.Name.Common.Contains(name, StringComparison.OrdinalIgnoreCase))
         .ToList();
     }
 
     public static List<Country> FilterByPopulation(List<Country> countries, int population) {
       return countries.Where(country => country.Population < population).ToList();
+    }
+
+    public static List<Country> SortCountries(List<Country> countries, string sortOrder) {
+      if (sortOrder == "ascend") {
+        return countries.OrderBy(c => c.Name.Common).ToList();
+      }
+      else if (sortOrder == "descend") {
+        return countries.OrderByDescending(c => c.Name.Common).ToList();
+      }
+      else {
+        throw new ArgumentException("Invalid sort order provided");
+      }
     }
   }
 }
