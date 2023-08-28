@@ -29,6 +29,5 @@ namespace CountriesProcessing.Helpers {
     public static List<Country> Pagination(List<Country> countries, int count) {
       return countries.Take(count).ToList();
     }
-
   }
 }
