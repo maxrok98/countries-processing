@@ -25,5 +25,10 @@ namespace CountriesProcessing.Helpers {
         throw new ArgumentException("Invalid sort order provided");
       }
     }
+
+    public static List<Country> Pagination(List<Country> countries, int count) {
+      return countries.Take(count).ToList();
+    }
+
   }
 }
