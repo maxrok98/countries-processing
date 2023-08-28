@@ -1,6 +1,6 @@
 ﻿namespace CountriesProcessing.Models {
   public class DemonymInfo {
-    public string F { get; set; }
-    public string M { get; set; }
+    public string? F { get; set; }
+    public string? M { get; set; }
   }
 }

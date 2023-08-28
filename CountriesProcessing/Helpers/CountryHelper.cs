@@ -16,10 +16,10 @@ namespace CountriesProcessing.Helpers {
 
     public static List<Country> SortCountries(List<Country> countries, string sortOrder) {
       if (sortOrder == "ascend") {
-        return countries.OrderBy(c => c.Name.Common).ToList();
+        return countries.OrderBy(c => c.Name?.Common).ToList();
       }
       else if (sortOrder == "descend") {
-        return countries.OrderByDescending(c => c.Name.Common).ToList();
+        return countries.OrderByDescending(c => c.Name?.Common).ToList();
       }
       else {
         throw new ArgumentException("Invalid sort order provided");

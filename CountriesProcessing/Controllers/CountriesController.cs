@@ -24,6 +24,10 @@ namespace CountriesProcessing.Controllers {
       };
       var countries = JsonSerializer.Deserialize<List<Country>>(response, options);
 
+      if(countries == null) {
+        return new List<Country>();
+      }
+
       if(!string.IsNullOrEmpty(name)) {
         countries = CountryHelpers.FilterByName(countries, name);
       }
