@@ -33,11 +33,11 @@ Given the described endpoint in the `CountriesController`, below are 10 example 
    - This will list countries with a population of less than 1 million.
 
 4. **Retrieve and Sort Countries in Ascending Order**:
-   - **Request**: `GET /Countries?sortBy=ascend`
+   - **Request**: `GET /Countries?sortByNameOrder=ascend`
    - Countries will be sorted by their names in ascending order.
 
 5. **Retrieve and Sort Countries in Descending Order**:
-   - **Request**: `GET /Countries?sortBy=descend`
+   - **Request**: `GET /Countries?sortByNameOrder=descend`
    - Countries will be sorted by their names in descending order.
 
 6. **Pagination - Retrieve First 5 Countries**:
@@ -45,15 +45,15 @@ Given the described endpoint in the `CountriesController`, below are 10 example 
    - This will list the first 5 countries based on the default order.
 
 7. **Retrieve Countries by Name & Sort in Ascending Order**:
-   - **Request**: `GET /Countries?name=Ind&sortBy=ascend`
+   - **Request**: `GET /Countries?name=Ind&sortByNameOrder=ascend`
    - This will return countries with names containing "Ind", sorted in ascending order by their names.
 
 8. **Retrieve Countries by Population and Sort in Descending Order**:
-   - **Request**: `GET /Countries?population=5000000&sortBy=descend`
+   - **Request**: `GET /Countries?population=5000000&sortByNameOrder=descend`
    - This will list countries with populations of less than 5 million, sorted in descending order by their names.
 
 9. **Retrieve Countries by Name, Sort in Ascending Order & Paginate**:
-   - **Request**: `GET /Countries?name=Aus&sortBy=ascend&count=3`
+   - **Request**: `GET /Countries?name=Aus&sortByNameOrder=ascend&count=3`
    - This will return countries with names containing "Aus", sorted in ascending order, and limited to the first 3 results.
 
 10. **Pagination - Retrieve the Next 5 Countries After the First 5**:

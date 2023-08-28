@@ -16,7 +16,7 @@ namespace CountriesProcessing.Controllers {
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Country>> GetCountries(string? name, int? population, string? sortBy, int? count) {
+    public async Task<IEnumerable<Country>> GetCountries(string? name, int? population, string? sortByNameOrder, int? count) {
       using HttpClient client = _httpClientFactory.CreateClient();
       var response = await client.GetStringAsync(RestCountriesUrl);
       var options = new JsonSerializerOptions {
@@ -30,8 +30,8 @@ namespace CountriesProcessing.Controllers {
       if(population.HasValue) {
         countries = CountryHelpers.FilterByPopulation(countries, population.Value);
       }
-      if(!string.IsNullOrEmpty(sortBy)) {
-        countries = CountryHelpers.SortCountries(countries, sortBy);
+      if(!string.IsNullOrEmpty(sortByNameOrder)) {
+        countries = CountryHelpers.SortCountries(countries, sortByNameOrder);
       }
 
       if(count.HasValue) {
