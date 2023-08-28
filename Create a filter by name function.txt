@@ -1,0 +1,86 @@
+User
+In c# .net 6, for a given models:
+  public class Country {
+    public NameInfo Name { get; set; }
+    public List<string> Tld { get; set; }
+    public string Cca2 { get; set; }
+    public string Ccn3 { get; set; }
+    public string Cca3 { get; set; }
+    public string Cioc { get; set; }
+    public bool Independent { get; set; }
+    public string Status { get; set; }
+    public bool UnMember { get; set; }
+    public Dictionary<string, CurrencyInfo> Currencies { get; set; }
+    public IddInfo Idd { get; set; }
+    public List<string> Capital { get; set; }
+    public List<string> AltSpellings { get; set; }
+    public string Region { get; set; }
+    public string Subregion { get; set; }
+    public Dictionary<string, string> Languages { get; set; }
+    public Dictionary<string, TranslationInfo> Translations { get; set; }
+    public List<double> Latlng { get; set; }
+    public bool Landlocked { get; set; }
+    public List<string> Borders { get; set; }
+    public double Area { get; set; }
+    public Dictionary<string, DemonymInfo> Demonyms { get; set; }
+    public string Flag { get; set; }
+    public MapInfo Maps { get; set; }
+    public int Population { get; set; }
+    public Dictionary<string, double> Gini { get; set; }
+    public string Fifa { get; set; }
+    public CarInfo Car { get; set; }
+    public List<string> Timezones { get; set; }
+    public List<string> Continents { get; set; }
+    public FlagInfo Flags { get; set; }
+    public CoatOfArmsInfo CoatOfArms { get; set; }
+    public string StartOfWeek { get; set; }
+    public CapitalInfo CapitalInfo { get; set; }
+    public PostalCodeInfo PostalCode { get; set; }
+  }
+  public class NameInfo {
+    public string Common { get; set; }
+    public string Official { get; set; }
+    public Dictionary<string, NativeNameInfo> NativeName { get; set; }
+  }
+
+write a method that accepts a list of country parameter, a name parameter and filters list by checking if Name.Common contains a given name parameter. A comparison should be case insensitive.
+
+ChatGPT:
+Certainly! Below is a C# method that accepts a list of `Country` objects and a `name` parameter, then filters the list to find countries where `Name.Common` contains the given name. The comparison is done in a case-insensitive manner:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Country {
+    public NameInfo Name { get; set; }
+    // ... other properties
+}
+
+public class NameInfo {
+    public string Common { get; set; }
+    public string Official { get; set; }
+    public Dictionary<string, NativeNameInfo> NativeName { get; set; }
+}
+
+// For demonstration purposes, I've only included the necessary classes.
+// You might have other classes like NativeNameInfo, etc. which you didn't list in your question.
+
+public List<Country> FilterCountriesByName(List<Country> countries, string name) {
+    return countries.Where(country => 
+        country.Name != null &&
+        country.Name.Common != null &&
+        country.Name.Common.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0
+    ).ToList();
+}
+
+// Usage:
+// var filteredCountries = FilterCountriesByName(listOfCountries, "usa");
+```
+
+In this example:
+
+- The `FilterCountriesByName` function uses LINQ to filter out countries based on the given name.
+- The `IndexOf` method is used with `StringComparison.OrdinalIgnoreCase` to perform a case-insensitive search in the `Common` name of the country.
+- The method returns a new list of countries that match the criteria.
