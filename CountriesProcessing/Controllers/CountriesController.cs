@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using CountriesProcessing.Models;
+using CountriesProcessing.Helpers;
 
 namespace CountriesProcessing.Controllers {
   [ApiController]
@@ -22,6 +23,20 @@ namespace CountriesProcessing.Controllers {
         PropertyNameCaseInsensitive = true
       };
       var countries = JsonSerializer.Deserialize<List<Country>>(response, options);
+
+      if(!string.IsNullOrEmpty(name)) {
+        countries = CountryHelpers.FilterByName(countries, name);
+      }
+      if(population.HasValue) {
+        countries = CountryHelpers.FilterByPopulation(countries, population.Value);
+      }
+      if(!string.IsNullOrEmpty(sortBy)) {
+        countries = CountryHelpers.SortCountries(countries, sortBy);
+      }
+
+      if(count.HasValue) {
+        countries = CountryHelpers.Pagination(countries, count.Value);
+      }
 
       return countries;
     }
