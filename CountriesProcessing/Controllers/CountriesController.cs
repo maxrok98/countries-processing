@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using CountriesProcessing.Models;
+using CountriesProcessing.Services;
 
 namespace CountriesProcessing.Controllers {
   [ApiController]
@@ -8,9 +9,11 @@ namespace CountriesProcessing.Controllers {
   public class CountriesController : ControllerBase {
     private const string RestCountriesUrl = "https://restcountries.com/v3.1/all";
 
+    private readonly ICountryService _countryService;
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public CountriesController(IHttpClientFactory httpClientFactory) {
+    public CountriesController(ICountryService countryService, IHttpClientFactory httpClientFactory) {
+      _countryService = countryService;
       _httpClientFactory = httpClientFactory;
     }
 
