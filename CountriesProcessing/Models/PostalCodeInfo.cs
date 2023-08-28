@@ -1,4 +1,6 @@
-﻿public class PostalCodeInfo {
-  public string Format { get; set; }
-  public string Regex { get; set; }
+﻿namespace CountriesProcessing.Models {
+  public class PostalCodeInfo {
+    public string Format { get; set; }
+    public string Regex { get; set; }
+  }
 }
